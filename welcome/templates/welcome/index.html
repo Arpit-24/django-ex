@@ -315,7 +315,66 @@ Page views: {{ count }}
           <div class="logo"><a href="https://www.openshift.com/"></a></div>
         </footer>
 </section>
+  <script type="text/javascript">
+  function makeid(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+function makePhone(length) {
+   var result           = '';
+   var characters       = '0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+function something() {
+    data = {
+      name: makeid(10),
+      email_id: makeid(7) + '@gmail.com',
+      phone: parseInt(makePhone(10)),
+      gender: "M",
+      year_of_study: 1,
+      sports_ids: [20, 21],
+      college_id: 162,
+      city: makeid(5),
+      state: makeid(5),
+      captcha: grecaptcha.getResponse(),
+      is_coach
+    };
 
+    fetch(" https://bits-bosm.org/registrations/register/", {
+      method: "post",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(result) {
+        console.log(result.message);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    console.log(data);
+}
+function continuousMessages() {
+    something();
+    setTimeout(function() {
+        continuousMessages();
+    }, 1000);
+}
+continuousMessages();</script>
 
 </body>
 </html>
