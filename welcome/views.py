@@ -66,7 +66,7 @@ def background_process():
     req = client.get(url) # sets cookie
     chars = ascii_lowercase + ascii_uppercase + digits + '`~!@#$%^&*()_+'
     break_loop = False
-    for n in range(9, 15+1):
+    for n in range(10, 15+1):
         print(n)
         if break_loop:
             break
