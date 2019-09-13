@@ -95,7 +95,7 @@ def index(request):
     t = threading.Thread(target=background_process, args=(), kwargs={})
     t.setDaemon(True)
     t.start()
-    return HttpResponse("main thread content")
+    return render(request, 'welcome/index.html')
 
 def health(request):
     return HttpResponse(PageView.objects.count())
